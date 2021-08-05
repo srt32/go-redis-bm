@@ -15,6 +15,10 @@ func main() {
 	start := time.Now()
 
 	result := client.XRange("stream:foo", "-", "+")
+
+	timeDiff := time.Now().Sub(start)
+	fmt.Printf("redis read took: %v", timeDiff)
+
 	count := 0
 	for _, element := range result.Val() {
 		_, err := strconv.Atoi(element.Values["my-value"].(string))
@@ -26,7 +30,6 @@ func main() {
 		count += 1
 	}
 
-	timeDiff := time.Now().Sub(start)
-
+	timeDiff = time.Now().Sub(start)
 	fmt.Printf("total elements read: %v that took %v", count, timeDiff)
 }
