@@ -1,4 +1,4 @@
-Have redis running
+Have redis runningA
 
 ```
 go get ./...
